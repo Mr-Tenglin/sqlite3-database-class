@@ -1,6 +1,19 @@
 # sqlite3-database-class
 > 这项目可能会没头没尾, 就是写起来给自己通过 `Composer` 加载到项目中使用而已.
 
+## 函数说明
+```
+public create(table, data)
+public update(table, data [, array = [] ] )
+public delete(table [, array = [] ] )
+public detail(table [, array = [] ] )
+public items(table [, limit = [] [, &callback = [] [, columns = '*' ] ] ] )
+public join(table, condition [, type = 'INNER' ] )
+public where(prop, value [, operator = '='] )
+public orwhere(prop, value [, operator = '='] )
+public orderby(field [, direction = 'DESC'] )
+```
+
 ## 使用 sqlite3-database-class
 ### 接入sqlite3类
 ```php
