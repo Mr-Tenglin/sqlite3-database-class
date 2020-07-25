@@ -5,7 +5,7 @@
  * Web Address:  http://www.ejcms.com
  * Copyright:    2011 EJCMS.com. All rights reserved
  * Author:       TengLin
- * File Name:    sqlite.php
+ * File Name:    SQLite3DB.php
  *============================================================
  */
 
@@ -17,15 +17,18 @@ class SQLite3DB extends SQLite3 {
 	protected $_where = [];
 	protected $_orderby = [];
 
-	public function __construct($file = "") {
+	public function __construct($dbfile = "", $prefix = "") {
 		if (empty($this->dbfile)) {
-			if (empty($file)) {
+			if (empty($dbfile)) {
 				exit("Please write sqlite database address!");
 			} else {
-				$this->open($file);
+				$this->open($dbfile);
 			}
 		} else {
 			$this->open($this->dbfile);
+		}
+		if (!empty($prefix)) {
+			$this->prefix = $prefix;
 		}
 	}
 
