@@ -3,15 +3,15 @@
 
 ## 函数说明
 ```
-public create(table, data)
-public update(table, data [, array = [] ] )
-public delete(table [, array = [] ] )
-public detail(table [, array = [] ] )
-public items(table [, limit = [] [, &callback = [] [, columns = '*' ] ] ] )
-public join(table, condition [, type = 'INNER' ] )
-public where(prop, value [, operator = '='] )
-public orwhere(prop, value [, operator = '='] )
-public orderby(field [, direction = 'DESC'] )
+public create(table, data) -- 加数据
+public update(table, data [, array = [] ] ) -- 更新数据
+public delete(table [, array = [] ] ) -- 删除数据
+public detail(table [, array = [] ] ) -- 查询单数据
+public items(table [, limit = [] [, &callback = [] [, columns = '*' ] ] ] ) -- 查询列表数据
+public join(table, condition [, type = 'INNER' ] ) -- 多表连接
+public where(prop, value [, operator = '='] ) -- and 查询
+public orwhere(prop, value [, operator = '='] ) -- or 查询
+public orderby(field [, direction = 'DESC'] ) -- 排序
 ```
 
 ## 使用 sqlite3-database-class
