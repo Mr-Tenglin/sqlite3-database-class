@@ -1,7 +1,7 @@
 {
     "name": "tenglin/sqlite3-database-class",
     "description": "Wrapper for a PHP sqlite3 class, which utilizes sqlite3 and prepared statements.",
-    "keywords": ["php", "sqlite3", "database"]
+    "keywords": ["php", "sqlite3", "database"],
     "authors": [
         {
             "name": "Tenglin",
