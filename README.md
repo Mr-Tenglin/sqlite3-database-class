@@ -115,8 +115,10 @@ $tables = [];
 $tables['table'] = 'user a';
 $tables['join'] = ['table' => 'user1 b', 'condition' => 'a.id = b.id', 'type' => 'left'];
 $db->where('a.cid', 1);
+$db->where('a.name', 'sql%', 'like');
+$db->orwhere('a.name', 'data');
 $db->orderby('a.id', 'desc');
 $result = $db->items($tables);
-// SELECT * FROM [ejcms_user a] left JOIN user1 b ON a.id = b.id WHERE a.cid = '1' ORDER BY a.id DESC;
+// SELECT * FROM [ejcms_user a] left JOIN user1 b ON a.id = b.id WHERE a.cid = '1' AND a.name like 'sql%' OR a.name = 'data' ORDER BY a.id DESC;
 print_r($result);
 ```
