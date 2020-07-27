@@ -21,18 +21,20 @@ require_once('sqlite3db.php');
 ```
 ### 调用sqlite3类
 ```php
-$db = new SQLite3DB('./data.db');
-```
-或是
-```php
+$db = new SQLite3DB('./data.db', 'ejcms_');
+
+// 或是
+
 $db = new SQLite3DB();
 $db->dbfile = './data.db';
+$db->prefix = 'ejcms_';
 ```
 ### 加数据
 ```php
 $id = $db->create('user', [
     'name' => 'sqlite'
 ]);
+// INSERT INTO [ejcms_user] (name) VALUES ('sqlite');
 print_r($id);
 ```
 ### 批量加数据
@@ -46,6 +48,8 @@ $ids = $db->create('user', [
         'name' => 'sqlite3'
     ],
 ]);
+// INSERT INTO [ejcms_user] (name) VALUES ('sqlite');
+// INSERT INTO ......
 print_r($ids);
 ```
 ### 更新数据
@@ -53,44 +57,66 @@ print_r($ids);
 $db->update('user', [
     'name' => 'database'
 ], ['id' => '1']);
-```
-或是
-```php
+// UPDATE ejcms_user SET [name] = 'database' WHERE id = '1';
+
+// 或是
+
 $db->where('id', [1, 2, 3], 'in');
 $db->update('user', [
     'name' => 'database'
 ]);
+// UPDATE ejcms_user SET [name] = 'database' WHERE id in ('1', '2', '3');
 ```
 ### 删除数据
 ```php
 $db->delete('user', ['id' => '1']);
-```
-或是
-```php
+// DELETE FROM [ejcms_user] WHERE id = '1';
+
+// 或是
+
 $db->where('id', [1, 2, 3], 'in');
 $db->delete('user');
+// DELETE FROM [ejcms_user] WHERE id in ('1', '2', '3');
 ```
 ### 查询单条数据
 ```php
-$db->detail('user', ['id' => '1']);
-```
-或是
-```php
-$db->join('user1 b', 'a.id = b.id', 'left');
-$result = $db->detail('user a');
+$result = $db->detail('user', ['id' => '1']);
+// SELECT * FROM [ejcms_user] WHERE id = '1' LIMIT 1;
 print_r($result);
-```
-或是
-```php
+
+// 或是
+
+$db->join('user1 b', 'a.id = b.id', 'left');
+$result = $db->detail('user a', ['a.id' => '1']);
+// SELECT * FROM [ejcms_user a] left JOIN user1 b ON a.id = b.id WHERE a.id = '1' LIMIT 1;
+print_r($result);
+
+// 或是
+
 $tables = [];
 $tables['table'] = 'user a';
 $tables['join'] = ['table' => 'user1 b', 'condition' => 'a.id = b.id', 'type' => 'left'];
-$result = $db->detail($tables);
+$result = $db->detail($tables, ['a.id' => '1']);
+// SELECT * FROM [ejcms_user a] left JOIN user1 b ON a.id = b.id WHERE a.id = '1' LIMIT 1;
 print_r($result);
 ```
 ### 查询列表
 ```php
 $db->where('cid', 1);
 $result = $db->items('user');
+// SELECT * FROM [ejcms_user] WHERE cid = '1';
+print_r($result);
+```
+
+// 或是
+
+```php
+$tables = [];
+$tables['table'] = 'user a';
+$tables['join'] = ['table' => 'user1 b', 'condition' => 'a.id = b.id', 'type' => 'left'];
+$db->where('a.cid', 1);
+$db->orderby('a.id', 'desc');
+$result = $db->items($tables);
+// SELECT * FROM [ejcms_user a] left JOIN user1 b ON a.id = b.id WHERE a.cid = '1' ORDER BY a.id DESC;
 print_r($result);
 ```
