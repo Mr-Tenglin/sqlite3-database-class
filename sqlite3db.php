@@ -235,6 +235,9 @@ class SQLite3DB extends SQLite3 {
 			return;
 		}
 		if (is_array($numRows)) {
+			if ($numRows[0] < 1) {
+				$numRows[0] = 1;
+			}
 			return " LIMIT " . (int) $numRows[0] . ", " . (int) $numRows[1];
 		} else {
 			return " LIMIT " . (int) $numRows;
