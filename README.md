@@ -1,6 +1,11 @@
 # sqlite3-database-class
 > 这项目可能会没头没尾, 就是写起来给自己通过 `Composer` 加载到项目中使用而已.
 
+## 通过 `Composer` 安装
+```
+composer require tenglin/sqlite3-database-class:dev-master
+```
+
 ## 函数说明
 ```
 public create(table, data) -- 加数据
