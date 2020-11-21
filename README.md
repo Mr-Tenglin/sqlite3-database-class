@@ -3,7 +3,7 @@
 
 ## 通过 `Composer` 安装
 ```
-composer require tenglin/sqlite3-database-class:dev-master
+composer require tenglin/sqlite3-database-class
 ```
 
 ## 函数说明
