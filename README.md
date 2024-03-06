@@ -3,7 +3,8 @@
 
 ## 通过 `Composer` 安装
 ```
-composer require tenglin/sqlite3-database-class
+composer require jaroslawzielinski/sqlite3-database-class
+in [packagist](https://packagist.org/packages/jaroslawzielinski/sqlite3-database-class)
 ```
 
 ## 函数说明
